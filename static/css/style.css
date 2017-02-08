@@ -1,0 +1,25 @@
+.add-button {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+  margin: 1vw 5% 1vw 5%;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../images/welcome_card.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.login-button {
+    line-height: 0 !important;
+}
