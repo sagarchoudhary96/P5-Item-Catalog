@@ -8,8 +8,8 @@
 }
 
 .demo-card-wide.mdl-card {
-  width: 512px;
-  margin: 1vw 5% 1vw 5%;
+  width: 300px;
+  margin: 1vw auto 1vw auto;
 }
 .demo-card-wide > .mdl-card__title {
   color: #fff;
@@ -23,3 +23,8 @@
 .login-button {
     line-height: 0 !important;
 }
+
+.mdl-grid {
+	max-width: 80vw;
+}
+
