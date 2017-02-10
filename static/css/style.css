@@ -5,11 +5,12 @@
     bottom: 0;
     margin-right: 40px;
     margin-bottom: 40px;
+    z-index: 900;
 }
 
 .demo-card-wide.mdl-card {
   width: 300px;
-  margin: 1vw auto 1vw auto;
+  margin: 3vw auto 3vw auto;
 }
 .demo-card-wide > .mdl-card__title {
   color: #fff;
@@ -28,3 +29,19 @@
 	max-width: 80vw;
 }
 
+h1 {
+    text-align: center;
+}
+
+.form-grid {
+    max-width: 60vw;
+}
+
+
+.item-form {
+    margin-left: 10vw;
+}
+
+.input-field-text {
+    width: 40vw;
+}
