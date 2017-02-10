@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Catalog</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+
+</head>
+
+<body>
+  <!-- Always shows a header, even in smaller screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">Book-Shelf</span>
+              <!-- Add spacer, to align navigation to the right -->
+              <div class="mdl-layout-spacer"></div>
+              <!-- Navigation. We hide it in small screens. -->
+              <nav class="mdl-navigation mdl-layout--large-screen-only">
+                  <a class="mdl-navigation__link" href="">Action</a>
+                  <a class="mdl-navigation__link" href="">Horror</a>
+                  <a class="mdl-navigation__link" href="">Mystery</a>
+                  <a class="mdl-navigation__link" href="">Romance</a>
+                  <a class="mdl-navigation__link" href="">Fantasy</a>
+                  <a class="mdl-navigation__link" href="">Other</a>
+                    <!-- Colored raised button -->
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Login</button>
+              </nav>
+          </div>
+      </header>
+      <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">Genres</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Action</a>
+            <a class="mdl-navigation__link" href="">Horror</a>
+            <a class="mdl-navigation__link" href="">Mystery</a>
+            <a class="mdl-navigation__link" href="">Romance</a>
+            <a class="mdl-navigation__link" href="">Fantasy</a>
+            <a class="mdl-navigation__link" href="">Other</a>
+          </nav>
+
+          <span class="mdl-layout-title">Account</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Login</a>
+          </nav>
+      </div>
+      <main class="mdl-layout__content">
+          <div class="page-content">
+
+              <h1>Add New Book</h1>
+                <div class="mdl-grid mdl-shadow--2dp form-grid">
+                        <form action="#" class="item-form">
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
+                            <input class="mdl-textfield__input" type="text" name="bookName">
+                            <label class="mdl-textfield__label" for="bookName">Book Name</label>
+                          </div>
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
+                            <input class="mdl-textfield__input" type="text" name="authorName">
+                            <label class="mdl-textfield__label" for="authorName">Author Name</label>
+                          </div>
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
+                            <input class="mdl-textfield__input" type="text" name="bookImage">
+                            <label class="mdl-textfield__label" for="bookImage">Book Cover Image url</label>
+                          </div>
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
+                            <textarea class="mdl-textfield__input" type="text" rows= "5" name="bookDescription" ></textarea>
+                            <label class="mdl-textfield__label" for="bookDescription">Description</label>
+                          </div>
+                         
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select input-field-text">
+                                
+                            <input class="mdl-textfield__input" type="text" name="category" id="category" value="" readonly tabIndex="-1">
+                            <label for="category" class="mdl-textfield__label">Category</label>
+                            <ul for="category" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                <li class="mdl-menu__item" data-val="Action">Action</li>
+                                <li class="mdl-menu__item">Horror</li>
+                                <li class="mdl-menu__item">Mystery</li>
+                                <li class="mdl-menu__item">Romance</li>
+                                <li class="mdl-menu__item">Fantasy</li>
+                                <li class="mdl-menu__item">Other</li>
+                            </ul>
+                            </div>
+                        
+                        <br>
+                        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Create">
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--grey-300" href="#">Cancel</a>
+
+                      </form>
+                </div>
+          </div>
+      </main>
+  </div>
+</body>
+
+</html>
