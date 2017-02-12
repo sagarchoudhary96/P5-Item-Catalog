@@ -1,3 +1,7 @@
+main {
+    background: #f5f5f5;
+}
+
 .add-button {
     position: fixed;
     display: block;
@@ -9,13 +13,12 @@
 }
 
 .demo-card-wide.mdl-card {
-  width: 300px;
+  width: 165px;
   margin: 3vw auto 3vw auto;
 }
 .demo-card-wide > .mdl-card__title {
   color: #fff;
-  height: 176px;
-  background: url('../images/welcome_card.jpg') center / cover;
+  height: 245px;
 }
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
@@ -26,7 +29,7 @@
 }
 
 .mdl-grid {
-	max-width: 80vw;
+	max-width: 60vw;
 }
 
 h1 {
@@ -43,5 +46,39 @@ h1 {
 }
 
 .input-field-text {
-    width: 40vw;
+    width: 40vw !important;
 }
+
+.input-button + .input-button {
+    margin-left: 3vw;
+}
+
+.input-button{
+     margin:5vh 0 5vh 0;
+}
+
+
+.margin-top-10 {
+    margin-top: 10vh;
+}
+
+.margin-top-5 {
+    margin-top: 5vh;
+}
+
+
+.login-dialog {
+    width: 30vw;
+}
+
+@media only screen and (max-width: 500px) {
+   .login-dialog {
+        width: 75vw;
+    }
+}
+
+.auto-margin {
+    margin: auto;
+}
+
+
