@@ -14,7 +14,9 @@ main {
 
 .demo-card-wide.mdl-card {
   width: 165px;
-  margin: 3vw auto 3vw auto;
+  display: inline-block;
+  margin: 3vh 1em;
+  transition: all 0.4s ease-in-out;
 }
 .demo-card-wide > .mdl-card__title {
   color: #fff;
@@ -29,7 +31,10 @@ main {
 }
 
 .mdl-grid {
-	max-width: 60vw;
+    display: flex;
+	max-width: 65vw;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -75,10 +80,90 @@ h1 {
    .login-dialog {
         width: 75vw;
     }
+    .demo-card-wide.mdl-card {
+        margin: 3vh auto 3vh auto;
+    }
 }
 
 .auto-margin {
     margin: auto;
 }
+
+
+.link-fade {
+    bottom: 0px;
+    color: rgb(33, 33, 33);
+    display: block;
+    height: 18px;
+    left: 0px;
+    max-height: 36px;
+    min-height: 18px;
+    position: relative;
+    right: 0px;
+    text-align: left;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+    top: 0px;
+    white-space: nowrap;
+    width: 140px;
+    column-rule-color: rgb(33, 33, 33);
+    perspective-origin: 70px 9px;
+    transform-origin: 70px 9px;
+    border: 0px none rgb(33, 33, 33);
+    font: normal normal 300 normal 16px / 18px Roboto, UILanguageFont, Arial, sans-serif;
+    outline: rgb(33, 33, 33) none 0px;
+    overflow: hidden;
+}
+
+
+.span-fade {
+    height: 18px;
+    left: 95px;
+    max-height: 100%;
+    position: absolute;
+    right: 0px;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    top: 0px;
+    white-space: nowrap;
+    width: 45px;
+    column-rule-color: rgb(33, 33, 33);
+    perspective-origin: 22.5px 9px;
+    transform-origin: 22.5px 9px;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255)) repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(33, 33, 33);
+    font: normal normal 300 normal 16px / 18px Roboto, UILanguageFont, Arial, sans-serif;
+    outline: rgb(33, 33, 33) none 0px;
+}
+
+.author-book {
+    color: rgb(97, 97, 97);
+    display: inline-block;
+    height: 16px;
+    max-width: 132px;
+    text-align: left;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+    white-space: nowrap;
+    width: 132px;
+    font: normal normal 300 normal 13px / 16px Roboto, UILanguageFont, Arial, sans-serif;
+    margin: 1vh 0px;
+    overflow: hidden;
+}
+
+.brighten {
+-webkit-filter: brightness(100%);
+-webkit-transition: all 1s ease;
+-moz-transition: all 1s ease;
+-o-transition: all 1s ease;
+-ms-transition: all 1s ease;
+transition: all 1s ease;
+    cursor: pointer;
+}
+
+.brighten:hover {
+-webkit-filter: brightness(50%);
+}
+
 
 
