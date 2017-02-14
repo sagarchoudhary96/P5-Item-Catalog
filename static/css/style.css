@@ -83,6 +83,9 @@ h1 {
     .demo-card-wide.mdl-card {
         margin: 3vh auto 3vh auto;
     }
+    .form-grid{
+        max-width: 85vw;
+    }
 }
 
 .auto-margin {
@@ -165,5 +168,11 @@ transition: all 1s ease;
 -webkit-filter: brightness(50%);
 }
 
+.margin-0 {
+    margin: 0;
+}
 
-
+.height {
+    height: 50px;
+    background-color: azure;
+}
