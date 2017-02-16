@@ -1,178 +1,21 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block content %}
+<div class="mdl-grid">
+{% for book in books %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Catalog</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../static/mdl/material.indigo-red.min.css" />
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <!--Import Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
-    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
 
-</head>
+        <div class="mdl-card__title brighten" title="{{book.bookName}}" style="background: url('{{ book.coverUrl }}') center / cover;">
+            <a href="#"></a>
+        </div>
 
-<body>
-  <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-color--red-400">
-          <div class="mdl-layout__header-row">
-              <!-- Title -->
-              <span class="mdl-layout-title">Book-Shelf</span>
-              <!-- Add spacer, to align navigation to the right -->
-              <div class="mdl-layout-spacer"></div>
-              <!-- Navigation. We hide it in small screens. -->
-              <nav class="mdl-navigation mdl-layout--large-screen-only">
-                  <a class="mdl-navigation__link" href="">Action</a>
-                  <a class="mdl-navigation__link" href="">Horror</a>
-                  <a class="mdl-navigation__link" href="">Mystery</a>
-                  <a class="mdl-navigation__link" href="">Romance</a>
-                  <a class="mdl-navigation__link" href="">Fantasy</a>
-                  <a class="mdl-navigation__link" href="">Other</a>
-                    <!-- Colored raised button -->
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white mdl-color-text--red-400 dialog-button">Login</button>
-              </nav>
-          </div>
-      </header>
-      <div class="mdl-layout__drawer">
-          <span class="mdl-layout-title">Genres</span>
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Action</a>
-            <a class="mdl-navigation__link" href="">Horror</a>
-            <a class="mdl-navigation__link" href="">Mystery</a>
-            <a class="mdl-navigation__link" href="">Romance</a>
-            <a class="mdl-navigation__link" href="">Fantasy</a>
-            <a class="mdl-navigation__link" href="">Other</a>
-          </nav>
+        <div class="mdl-card__actions mdl-card--border">
 
-          <span class="mdl-layout-title">Account</span>
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Login</a>
-          </nav>
-      </div>
-      <main class="mdl-layout__content">
-          <div class="page-content">
-                <div class="mdl-grid">
-                    
-                     <div class="demo-card-wide mdl-card mdl-shadow--8dp">
-                     
-                      <div class="mdl-card__title brighten" title="The Year of Taking Chances" style="background: url('https://books.google.com/books/content/images/frontcover/F9uIBAAAQBAJ?fife=w300-rw') center / cover;">
-                      <a href="#"></a>
-                      </div>
-                      
-                      <div class="mdl-card__actions mdl-card--border">
-                        
-			             <a href="/store/books/details/Lucy_Diamond_The_Year_of_Taking_Chances?id=F9uIBAAAQBAJ" title="The Year of Taking Chances" tabindex="-1" class="link-fade"> <span>The Year of Taking Chances</span><span class="span-fade"></span></a>
-                     
-                         <a href="/store/info/name/Lucy_Diamond?id=1jl0gbw_7" title="Lucy Diamond" class="author-book">Lucy Diamond</a>
-                      </div>
-                    </div>
-                    
-                    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
-                      <div class="mdl-card__title brighten" title="Summoner: The Inquisition: Book 2" style="background: url('https://books.google.com/books/content/images/frontcover/sQAfCgAAQBAJ?fife=w300-rw') center / cover;">
-                      <a href="#"></a>
-                      </div>
-                      <div class="mdl-card__actions mdl-card--border">
-                        
-			             <a href="#" title="Summoner: The Inquisition: Book 2" tabindex="-1" class="link-fade"> <span>Summoner: The Inquisition: Book 2</span><span class="span-fade"></span></a>
-                     
-                         <a href="#" title="Taran Matharu" class="author-book">Taran Matharu</a>
-                      </div>
-                    </div>
-                    
-                    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
-                      <div class="mdl-card__title brighten" title="That's The Way We Met" style="background: url('https://books.google.com/books/content/images/frontcover/xE15t_pAG34C?fife=w300-rw') center / cover;">
-                      <a href="#"></a>
-                      </div>
-                      <div class="mdl-card__actions mdl-card--border">
-                        
-			             <a href="#" title="That's The Way We Met" tabindex="-1" class="link-fade"> <span>That's The Way We Met</span><span class="span-fade"></span></a>
-                     
-                         <a href="#" title="Sudeep Nagarkar" class="author-book">Sudeep Nagarkar</a>
-                      </div>
-                    </div>
-                    
-                    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
-                      <div class="mdl-card__title brighten" title="The Creep" style="background: url('https://books.google.com/books/content/images/frontcover/fEI4qWTBoZMC?fife=w300-rw') center / cover;">
-                      <a href="#"></a>
-                      </div>
-                      <div class="mdl-card__actions mdl-card--border">
-                        
-			             <a href="#" title="The Creep" tabindex="-1" class="link-fade"> <span>The Creep</span><span class="span-fade"></span></a>
-                     
-                         <a href="#" title="John Arcudi" class="author-book">John Arcudi</a>
-                      </div>
-                    </div>
-                    
-                    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
-                      <div class="mdl-card__title brighten" title="Now That You're Rich: Let's fall in Love!" style="background: url('https://books.google.com/books/content/images/frontcover/CDQnAgAAQBAJ?fife=w300-rw') center / cover;">
-                      <a href="#"></a>
-                      </div>
-                      <div class="mdl-card__actions mdl-card--border">
-                        
-			             <a href="#" title="Now That You're Rich: Let's fall in Love!" tabindex="-1" class="link-fade"> <span>Now That You're Rich: Let's fall in Love!</span><span class="span-fade"></span></a>
-                     
-                         <a href="#" title="Durjoy Datta" class="author-book">Durjoy Datta</a>
-                      </div>
-                    </div>
-                    
+            <a href="/store/books/details/Lucy_Diamond_The_Year_of_Taking_Chances?id=F9uIBAAAQBAJ" title="{{ book.bookName }}" tabindex="-1" class="link-fade"> <span>{{ book.bookName }}</span><span class="span-fade"></span></a>
 
-                </div>
-              <!-- Colored FAB button with ripple -->
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored add-button mdl-color--red-400" id="add-button">
-                <i class="material-icons">add</i>
-              </button>
-              <div class="mdl-tooltip" data-mdl-for="add-button"><strong>Add Item</strong></div>
-              
-              <dialog id="dialog" class="mdl-dialog mdl-color--red-400 mdl-color-text--white login-dialog">
-
-                  <div class="mdl-dialog__content">
-                        <div class="signin-button mdl-typography--text-center">
-                            <h5 class="mdl-color-text--white no-margin fa-2x">Sign-in With  </h5>
-                                <div style="display: flex;">
-                                    <div id="googleSignIn" class="auto-margin circle">
-                                        <h5 class="mdl-color-text--white no-margin fa-5x"><i class="fa fa-google-plus" aria-hidden="true"></i></h5>
-                                    </div>
-                                    <div id="githubSignIn" class="auto-margin circle">
-                                        <h5 class="mdl-color-text--white no-margin fa-5x"><i class="fa fa-github" aria-hidden="true"></i></h5>
-                                    </div>
-                                </div>
-                          </div>
-                  </div>
-                </dialog>
-          </div>
-      </main>
-  </div>
-  <script src="../static/js/app.js"></script>
-  <script>
-      (function() {
-    'use strict';
-    var dialogButton = document.querySelector('.dialog-button');
-    var dialog = document.querySelector('#dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    dialogButton.addEventListener('click', function() {
-       dialog.showModal();
-      dialog.addEventListener('click', function (event) {
-          var rect = dialog.getBoundingClientRect();
-          var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
-            && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-          if (!isInDialog) {
-              dialog.close();
-          }
-      });
-    });
-  }());
-</script>
-
-</body>
-
-</html>
+            <a href="/store/info/name/Lucy_Diamond?id=1jl0gbw_7" title="{{ book.authorName }}" class="author-book">{{ book.authorName }}</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
