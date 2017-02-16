@@ -13,17 +13,19 @@ main {
 }
 
 .demo-card-wide.mdl-card {
-  width: 165px;
-  display: inline-block;
-  margin: 3vh 1em;
-  transition: all 0.4s ease-in-out;
+    width: 165px;
+    display: inline-block;
+    margin: 3vh 1em;
+    transition: all 0.4s ease-in-out;
 }
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 245px;
+
+.demo-card-wide>.mdl-card__title {
+    color: #fff;
+    height: 245px;
 }
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
+
+.demo-card-wide>.mdl-card__menu {
+    color: #fff;
 }
 
 .login-button {
@@ -32,7 +34,7 @@ main {
 
 .mdl-grid {
     display: flex;
-	max-width: 65vw;
+    max-width: 65vw;
     align-items: center;
     justify-content: center;
 }
@@ -45,7 +47,6 @@ h1 {
     max-width: 60vw;
 }
 
-
 .item-form {
     margin-left: 10vw;
 }
@@ -54,14 +55,13 @@ h1 {
     width: 40vw !important;
 }
 
-.input-button + .input-button {
+.input-button+.input-button {
     margin-left: 3vw;
 }
 
-.input-button{
-     margin:5vh 0 5vh 0;
+.input-button {
+    margin: 5vh 0 5vh 0;
 }
-
 
 .margin-top-10 {
     margin-top: 10vh !important;
@@ -71,21 +71,17 @@ h1 {
     margin-top: 5vh;
 }
 
-
 .login-dialog {
     width: 30vw;
 }
 
-.action-button{
-    
+.action-button {
     margin: 8vh 0 10px 10px;
 }
-
 
 .auto-margin {
     margin: auto;
 }
-
 
 .link-fade {
     bottom: 0px;
@@ -111,7 +107,6 @@ h1 {
     outline: rgb(33, 33, 33) none 0px;
     overflow: hidden;
 }
-
 
 .span-fade {
     height: 18px;
@@ -159,7 +154,7 @@ h1 {
 }
 
 .brighten:hover {
--webkit-filter: brightness(50%);
+    -webkit-filter: brightness(50%);
 }
 
 .margin-0 {
@@ -167,47 +162,43 @@ h1 {
 }
 
 .book-img-detail {
-  box-shadow: rgb(141, 141, 141) 0px 0px 4px 0px;
-  height: 200.663px;
-     margin-top: 3vh;
-        margin-bottom: 3vh;
+    box-shadow: rgb(141, 141, 141) 0px 0px 4px 0px;
+    height: 200.663px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
-
 
 .book-header {
-  box-sizing: border-box;
-  vertical-align: top;
-  font: normal normal 300 normal 13px / 18.2px Roboto, UILanguageFont, Arial, sans-serif;
+    box-sizing: border-box;
+    vertical-align: top;
+    font: normal normal 300 normal 13px / 18.2px Roboto, UILanguageFont, Arial, sans-serif;
 }
 
-
 .book-title {
-  text-align: left;
-  font: normal normal 300 normal 24px / 26px Roboto, UILanguageFont, Arial, sans-serif;
-  margin: 10px 0 10px 10px;
-  outline: rgb(33, 33, 33) none 0px;
+    text-align: left;
+    font: normal normal 300 normal 24px / 26px Roboto, UILanguageFont, Arial, sans-serif;
+    margin: 10px 0 10px 10px;
+    outline: rgb(33, 33, 33) none 0px;
 }
 
 .author-book-detail {
-  text-align: left;
-  text-rendering: optimizeLegibility;
-  text-decoration: none;
-  color: rgb(97, 97, 97);
-  white-space: nowrap;
-  border: 0px none rgb(97, 97, 97);
-  font: normal normal bold normal 16px / 20.2px Roboto, UILanguageFont, Arial, sans-serif;
-  margin: 10px 0 10px 10px;
-  outline: rgb(97, 97, 97) none 0px;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    text-decoration: none;
+    color: rgb(97, 97, 97);
+    white-space: nowrap;
+    border: 0px none rgb(97, 97, 97);
+    font: normal normal bold normal 16px / 20.2px Roboto, UILanguageFont, Arial, sans-serif;
+    margin: 10px 0 10px 10px;
+    outline: rgb(97, 97, 97) none 0px;
 }
 
-
 .button-edit, .button-delete {
-  height: 36px;
-  
-  font: normal normal 500 normal 14px / 36px Roboto, sans-serif;
-  margin: 2vh 10px 5px 0;
-  padding: 0px 20px;
-  cursor: pointer;
+    height: 36px;
+    font: normal normal 500 normal 14px / 36px Roboto, sans-serif;
+    margin: 2vh 10px 5px 0;
+    padding: 0px 20px;
+    cursor: pointer;
 }
 
 .justify-start {
@@ -216,9 +207,8 @@ h1 {
 }
 
 .padding-0 {
-    padding-left: 0; 
+    padding-left: 0;
 }
-
 
 .detail-content-line {
     margin-left: 1em;
@@ -247,7 +237,7 @@ h1 {
 }
 
 p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     line-height: 1.5;
     font-weight: 300;
     color: #333;
@@ -255,26 +245,22 @@ p {
 }
 
 @media only screen and (max-width: 500px) {
-   .login-dialog {
+    .login-dialog {
         width: 75vw;
     }
     .demo-card-wide.mdl-card {
         margin: 3vh auto 3vh auto;
     }
-    .form-grid{
+    .form-grid {
         max-width: 85vw;
     }
-    
-    .action-button{
+    .action-button {
         margin-top: 5vh;
     }
-    
     .book-description {
         padding: 0 30px 0 30px;
     }
-    
     .description-content {
         margin-bottom: 5vh;
     }
 }
-
