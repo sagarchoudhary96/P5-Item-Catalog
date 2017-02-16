@@ -60,30 +60,33 @@ def bookDetail(category, bookId):
 @app.route('/books/category/<string:category>/<int:bookId>/edit/', methods=['GET', 'POST'])
 def editBookDetails(category, bookId):
     book = session.query(BookDB).filter_by(id = bookId, category = category).first()
-    book.description = book.description.replace('<br>', '\n')
     if request.method == 'POST':
-        bookName = request.form['bookName']
-        bookAuthor = request.form['authorName']
-        coverUrl = request.form['bookImage']
-        description = request.form['bookDescription']
-        description = description.replace('\n', '<br>')
-        bookCategory = request.form['category']
-        if bookName:
-            book.bookName = bookName
-        if bookAuthor:
-            book.authorName = bookAuthor
-        if coverUrl:
-            book.coverUrl = coverUrl
-        if description:
-            book.description = description
-        if bookCategory:
-            book.category = bookCategory
+            bookName = request.form['bookName']
+            bookAuthor = request.form['authorName']
+            coverUrl = request.form['bookImage']
+            description = request.form['bookDescription']
+            description = description.replace('\n', '<br>')
+            bookCategory = request.form['category']
+            if bookName:
+                book.bookName = bookName
+            if bookAuthor:
+                book.authorName = bookAuthor
+            if coverUrl:
+                book.coverUrl = coverUrl
+            if description:
+                book.description = description
+            if bookCategory:
+                book.category = bookCategory
 
-        session.add(book)
-        session.commit()
-        return redirect(url_for('showBooks'))
-    else:
+            session.add(book)
+            session.commit()
+            return redirect(url_for('showBooks'))
+    elif book:
+        book.description = book.description.replace('<br>', '\n')
         return render_template("editItem.html", currentPage = 'edit', title = "Edit Book Details", book = book)
+    else:
+        return render_template("main.html", currentPage = 'main', error = 'No Book Found with this Category and Book Id :(')
+
 
 if __name__ == '__main__':
     app.debug = True
