@@ -16,6 +16,8 @@
             <a href="/store/info/name/Lucy_Diamond?id=1jl0gbw_7" title="{{ book.authorName }}" class="author-book">{{ book.authorName }}</a>
         </div>
     </div>
+    {% else %}
+    <span align="center" class="no-book-msg">Sorry! No Book in Database With This Genre :(</span>
 {% endfor %}
 </div>
 {% endblock %}

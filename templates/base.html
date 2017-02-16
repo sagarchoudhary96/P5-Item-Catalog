@@ -24,17 +24,17 @@
     <header class="mdl-layout__header header-color">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">Book-Shelf</span>
+            <a href="{{url_for('showBooks')}}" class="mdl-color-text--white page-title"><span class="mdl-layout-title">Book-Shelf</span></a>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="">Fiction</a>
-                <a class="mdl-navigation__link" href="">Horror</a>
-                <a class="mdl-navigation__link" href="">Mystery</a>
-                <a class="mdl-navigation__link" href="">Romance</a>
-                <a class="mdl-navigation__link" href="">Fantasy</a>
-                <a class="mdl-navigation__link" href="">Other</a>
+                <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Fiction')}}">Fiction</a>
+                <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Horror')}}">Horror</a>
+                <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Mystery')}}">Mystery</a>
+                <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Romance')}}">Romance</a>
+                <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Fantasy')}}">Fantasy</a>
+                <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Other')}}">Other</a>
                   <!-- Colored raised button -->
                   <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white login-button-color dialog-button">Login</button>
             </nav>
@@ -43,12 +43,12 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Genres</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Fiction</a>
-          <a class="mdl-navigation__link" href="">Horror</a>
-          <a class="mdl-navigation__link" href="">Mystery</a>
-          <a class="mdl-navigation__link" href="">Romance</a>
-          <a class="mdl-navigation__link" href="">Fantasy</a>
-          <a class="mdl-navigation__link" href="">Other</a>
+          <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Fiction')}}">Fiction</a>
+          <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Horror')}}">Horror</a>
+          <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Mystery')}}">Mystery</a>
+          <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Romance')}}">Romance</a>
+          <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Fantasy')}}">Fantasy</a>
+          <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Other')}}">Other</a>
         </nav>
 
         <span class="mdl-layout-title">Account</span>

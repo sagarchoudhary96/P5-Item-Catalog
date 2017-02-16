@@ -143,6 +143,17 @@ h1 {
     overflow: hidden;
 }
 
+.page-title {
+  text-decoration: none !important;
+}
+
+.no-book-msg {
+    margin-top: 40vh;
+    line-height: 1.2;
+    font-size: 24px;
+    color: #4f4f52;
+}
+
 .brighten {
     -webkit-filter: brightness(100%);
     -webkit-transition: all 1s ease;
@@ -262,5 +273,8 @@ p {
     }
     .description-content {
         margin-bottom: 5vh;
+    }
+    .no-book-msg{
+        margin-top: 30vh;
     }
 }
