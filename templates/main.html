@@ -6,18 +6,18 @@
     <div class="demo-card-wide mdl-card mdl-shadow--8dp">
 
         <div class="mdl-card__title brighten" title="{{book.bookName}}" style="background: url('{{ book.coverUrl }}') center / cover;">
-            <a href="#"></a>
+            <a href="{{url_for('bookDetail',category = book.category, bookId = book.id)}}"></a>
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
 
-            <a href="/store/books/details/Lucy_Diamond_The_Year_of_Taking_Chances?id=F9uIBAAAQBAJ" title="{{ book.bookName }}" tabindex="-1" class="link-fade"> <span>{{ book.bookName }}</span><span class="span-fade"></span></a>
+            <a href="{{url_for('bookDetail',category = book.category, bookId = book.id)}}" title="{{ book.bookName }}" tabindex="-1" class="link-fade"> <span>{{ book.bookName }}</span><span class="span-fade"></span></a>
 
-            <a href="/store/info/name/Lucy_Diamond?id=1jl0gbw_7" title="{{ book.authorName }}" class="author-book">{{ book.authorName }}</a>
+            <a href="{{url_for('bookDetail',category = book.category, bookId = book.id)}}" title="{{ book.authorName }}" class="author-book">{{ book.authorName }}</a>
         </div>
     </div>
     {% else %}
-    <span align="center" class="no-book-msg">Sorry! No Book in Database With This Genre :(</span>
+    <span align="center" class="no-book-msg">{{error}}</span>
 {% endfor %}
 </div>
 {% endblock %}

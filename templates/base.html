@@ -23,20 +23,27 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header header-color">
         <div class="mdl-layout__header-row">
+
             <!-- Title -->
+            {% if currentPage == 'main' %}
             <a href="{{url_for('showBooks')}}" class="mdl-color-text--white page-title"><span class="mdl-layout-title">Book-Shelf</span></a>
+            {% else %}
+            <span class="mdl-layout-title">{{title}}</span>
+            {% endif %}
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
+              {% if currentPage == 'main' %}
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Fiction')}}">Fiction</a>
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Horror')}}">Horror</a>
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Mystery')}}">Mystery</a>
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Romance')}}">Romance</a>
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Fantasy')}}">Fantasy</a>
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Other')}}">Other</a>
-                  <!-- Colored raised button -->
-                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white login-button-color dialog-button">Login</button>
+              {% endif %}
+                <!-- Colored raised button -->
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white login-button-color dialog-button">Login</button>
             </nav>
         </div>
     </header>

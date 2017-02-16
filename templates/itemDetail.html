@@ -1,144 +1,35 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %} {% block content %}
+{% if book %}
+<div class="mdl-card auto-margin mdl-textfield--full-width form-grid mdl-shadow--3dp margin-bottom-10 mdl-color--white margin-top-10">
+    <div class="mdl-grid margin-0 mdl-textfield--full-width justify-start padding-0">
+        <div class=" mdl-cell--3-col mdl-cell--1-offset-desktop mdl-cell--6-col-phone mdl-cell--8-col-tablet  mdl-typography--text-center">
+            <img src="{{book.coverUrl}}" alt="Cover art" class="book-img-detail" />
+        </div>
+        <div class=" mdl-cell--7-col mdl-cell--8-col-phone auto-margin book-header">
+            <h1 class="book-title">{{book.bookName}}</h1>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Catalog</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../static/mdl/material.indigo-red.min.css" />
-    <link rel="stylesheet" href="../static/mdl/material.css">
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <!--Import Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
-    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+            <div>
+                <span class="author-book-detail">{{book.authorName}}</span>
+            </div>
+            <div class="action-button">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white mdl-color-text--purple-A700 button-edit" onclick="location.href='{{url_for('editBookDetails', category = book.category, bookId = book.id)}}'">Edit Book Details</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--purple-A700 mdl-color-text--white button-delete">Delete Book</button>
+            </div>
+        </div>
 
-</head>
+    </div>
+    <hr class="detail-content-line" />
 
-<body>
-  <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-color--purple-A700">
-          <div class="mdl-layout__header-row">
-              <!-- Title -->
-              <span class="mdl-layout-title">Book Title</span>
-              <!-- Add spacer, to align navigation to the right -->
-              <div class="mdl-layout-spacer"></div>
-              <!-- Navigation. We hide it in small screens. -->
-              <nav class="mdl-navigation mdl-layout--large-screen-only">
-<!--
-                  <a class="mdl-navigation__link" href="">Action</a>
-                  <a class="mdl-navigation__link" href="">Horror</a>
-                  <a class="mdl-navigation__link" href="">Mystery</a>
-                  <a class="mdl-navigation__link" href="">Romance</a>
-                  <a class="mdl-navigation__link" href="">Fantasy</a>
-                  <a class="mdl-navigation__link" href="">Other</a>
-                     Colored raised button 
--->
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white mdl-color-text--purple-A700 dialog-button">Login</button>
-              </nav>
-          </div>
-      </header>
-      <div class="mdl-layout__drawer">
-          <span class="mdl-layout-title">Genres</span>
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Action</a>
-            <a class="mdl-navigation__link" href="">Horror</a>
-            <a class="mdl-navigation__link" href="">Mystery</a>
-            <a class="mdl-navigation__link" href="">Romance</a>
-            <a class="mdl-navigation__link" href="">Fantasy</a>
-            <a class="mdl-navigation__link" href="">Other</a>
-          </nav>
+    <div class="book-description">
+        <div class="description-content margin-bottom-10">
+            {{book.description|safe}}
+        </div>
 
-          <span class="mdl-layout-title">Account</span>
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Login</a>
-          </nav>
-      </div>
-      <main class="mdl-layout__content">
-          <div class="page-content">
+    </div>
 
-                <div class="mdl-card auto-margin mdl-textfield--full-width form-grid mdl-shadow--3dp margin-bottom-10 mdl-color--white margin-top-10">
-                  <div class="mdl-grid margin-0 mdl-textfield--full-width justify-start padding-0">
-                     <div class=" mdl-cell--3-col mdl-cell--1-offset-desktop mdl-cell--6-col-phone mdl-cell--8-col-tablet  mdl-typography--text-center">
-                         <img src="https://books.google.com/books/content/images/frontcover/-efIAQAAQBAJ?fife=w300-rw" alt="Cover art" class="book-img-detail" />
-                     </div>
-                     <div class=" mdl-cell--7-col mdl-cell--8-col-phone auto-margin book-header">
-                         <h1 class="book-title"> Christmas at the Beach Cafe: A Novella </h1>
-                          
-                        <div>
-                             <span class="author-book-detail">Lucy Diamond</span>
-                        </div>
-                        <div class="action-button">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white mdl-color-text--purple-A700 button-edit">Edit Book Details</button>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--purple-A700 mdl-color-text--white button-delete">Delete Book</button>
-                        </div>
-                     </div>
-                      
-                  </div>
-                  <hr class="detail-content-line"/>
-                  
-                  <div class="book-description">
-                     <div class="description-content margin-bottom-10">
-                         <p>From the bestselling author of The Beach Cafe, Lucy Diamond, comes The Year of Taking Chances, a novel full of warmth, humour and romance.</p>
-                         
-                         <p>Because love is always worth the risk . . .</p>
+</div>
+{% else %}
+  <span align="center" class="no-book-msg">Sorry! No Book in Database With This Genre :(</span>
+{% endif %}
 
-                         <p>It's New Year's Eve, and Gemma and Spencer Bailey are throwing a house party. There's music, dancing, champagne and all their best friends under one roof. It's going to be a night to remember.</p>
-
-                         <p>Also at the party is Caitlin, who has returned to the village to pack up her much-missed mum's house and to figure out what to do with her life; and Saffron, a PR executive who's keeping a secret which no amount of spin can change. The three women bond over Gemma's dodgy cocktails and fortune cookies, and vow to make this year their best one yet.</p>
-
-                        <p>But as the months unfold, Gemma, Saffron and Caitlin find themselves tested to their limits by shocking new developments. Family, love, work, home - all the things they've taken for granted are thrown into disarray. Under pressure, they are each forced to rethink their lives and start over. But dare they take a chance on something new?</p>
-                     </div>
-                         
-                  </div>
-                    
-                </div>
-
-                <dialog id="dialog" class="mdl-dialog mdl-color--purple-A700 mdl-color-text--white login-dialog">
-                  <div class="mdl-dialog__content">
-
-                        <div class="signin-button mdl-typography--text-center">
-                            <h5 class="mdl-color-text--white no-margin fa-2x">Sign-in With  </h5>
-                            <div style="display: flex;">
-                                <div id="googleSignIn" class="auto-margin circle">
-                                    <h5 class="mdl-color-text--white no-margin fa-5x"><i class="fa fa-google-plus" aria-hidden="true"></i></h5>
-                                </div>
-                                <div id="githubSignIn" class="auto-margin circle">
-                                    <h5 class="mdl-color-text--white no-margin fa-5x"><i class="fa fa-github" aria-hidden="true"></i></h5>
-                                </div>
-                            </div>
-                          </div>
-                  </div>
-                </dialog>
-
-          </div>
-      </main>
-  </div>
-  <script>
-      (function() {
-    'use strict';
-    var dialogButton = document.querySelector('.dialog-button');
-    var dialog = document.querySelector('#dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    dialogButton.addEventListener('click', function() {
-       dialog.showModal();
-      dialog.addEventListener('click', function (event) {
-          var rect = dialog.getBoundingClientRect();
-          var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
-            && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-          if (!isInDialog) {
-              dialog.close();
-          }
-      });
-    });
-  }());
-    </script>
-</body>
-
-</html>
+{% endblock %}
