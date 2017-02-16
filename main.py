@@ -39,6 +39,13 @@ def newBook():
     else:
         return render_template("newItem.html", currentPage = "new")
 
+# for showing book of different category
+@app.route('/books/category/<string:category>')
+def sortBooks(category):
+    books = session.query(BookDB).filter_by(category = category).all()
+    return render_template("main.html", books = books, currentPage = 'main')
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='', port = 5000)
