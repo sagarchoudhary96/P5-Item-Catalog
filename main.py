@@ -22,6 +22,23 @@ def showBooks():
     books = session.query(BookDB).all()
     return render_template('main.html', books = books, currentPage = 'main')
 
+# for adding new book
+@app.route('/book/new', methods=['GET', 'POST'])
+def newBook():
+    if request.method == 'POST':
+        bookName = request.form['bookName']
+        bookAuthor = request.form['authorName']
+        coverUrl = request.form['bookImage']
+        description = request.form['bookDescription']
+        bookCategory = request.form['category']
+        newBook = BookDB(bookName = bookName, authorName = bookAuthor, coverUrl = coverUrl, description = description, category = bookCategory)
+
+        session.add(newBook)
+        session.commit()
+        return redirect(url_for('showBooks'))
+    else:
+        return render_template("newItem.html", currentPage = "new")
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='', port = 5000)
