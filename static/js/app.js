@@ -64,6 +64,6 @@ var validateDetails = function() {
     return false;
   }
 
-  $('#newBook').submit();
+  $('#bookForm').submit();
 
 };

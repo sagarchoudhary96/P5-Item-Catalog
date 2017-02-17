@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block content%}
 <div class="mdl-grid mdl-shadow--2dp form-grid mdl-color--white margin-top-10">
-        <form action="{{url_for('editBookDetails', category = book.category, bookId = book.id)}}" class="item-form" method="post">
+        <form action="{{url_for('editBookDetails', category = book.category, bookId = book.id)}}" class="item-form" method="post" id="bookForm">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text margin-top-5">
-            <input class="mdl-textfield__input" type="text" name="bookName" value="{{book.bookName}}">
+            <input class="mdl-textfield__input" type="text" name="bookName" value="{{book.bookName}}" id="bookname">
             <label class="mdl-textfield__label" for="bookName">Book Name</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
-            <input class="mdl-textfield__input" type="text" name="authorName" value="{{book.authorName}}">
+            <input class="mdl-textfield__input" type="text" name="authorName" value="{{book.authorName}}" id="authorname">
             <label class="mdl-textfield__label" for="authorName">Author Name</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
-            <input class="mdl-textfield__input" type="text" name="bookImage" value="{{book.coverUrl}}">
+            <input class="mdl-textfield__input" type="text" name="bookImage" value="{{book.coverUrl}}" id="coverurl">
             <label class="mdl-textfield__label" for="bookImage">Book Cover Image url</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
-            <textarea class="mdl-textfield__input" type="text"  name="bookDescription" >{{book.description}}</textarea>
+            <textarea class="mdl-textfield__input" type="text"  name="bookDescription" id="description">{{book.description}}</textarea>
             <label class="mdl-textfield__label" for="bookDescription">Description</label>
           </div>
 
@@ -34,7 +34,7 @@
             </div>
 
         <br>
-        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent input-button mdl-color--teal" type="submit" value="Edit">
+        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent input-button mdl-color--teal" onclick="validateDetails()" type="button" value="Edit">
         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--grey-300 input-button" href="{{url_for('showBooks')}}">Cancel</a>
 
       </form>

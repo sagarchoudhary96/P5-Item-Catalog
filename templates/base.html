@@ -69,13 +69,13 @@
           <!--all content will go here-->
           {% block content %}
           {% endblock %}
-
+          {% if currentPage=='main' or currentPage=='detail' %}
             <!-- Colored FAB button with ripple -->
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored add-button add-button-color" id="add-button" onclick="location.href='{{url_for('newBook')}}'">
               <i class="material-icons">add</i>
             </button>
             <div class="mdl-tooltip" data-mdl-for="add-button"><strong>Add Item</strong></div>
-
+          {% endif %}
 
         </div>
     </main>
