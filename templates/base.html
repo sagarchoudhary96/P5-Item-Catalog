@@ -150,5 +150,17 @@
 }());
 
 </script>
+{% if errorMsg %}
+<script>
+$(document).ready(function(){
+  var errorMsg = document.querySelector('.mdl-js-snackbar');
+  errorMsg.MaterialSnackbar.showSnackbar(
+    {
+      message: "{{errorMsg}}"
+    }
+  );
+});
+</script>
+{% endif %}
 </body>
 </html>

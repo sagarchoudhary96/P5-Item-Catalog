@@ -65,22 +65,19 @@ def editBookDetails(category, bookId):
             bookAuthor = request.form['authorName']
             coverUrl = request.form['bookImage']
             description = request.form['bookDescription']
-            description = description.replace('\n', '<br>')
             bookCategory = request.form['category']
-            if bookName:
+            if (bookName and bookAuthor and coverUrl and description and bookCategory):
                 book.bookName = bookName
-            if bookAuthor:
                 book.authorName = bookAuthor
-            if coverUrl:
                 book.coverUrl = coverUrl
-            if description:
+                description = description.replace('\n', '<br>')
                 book.description = description
-            if bookCategory:
                 book.category = bookCategory
-
-            session.add(book)
-            session.commit()
-            return redirect(url_for('bookDetail', category = book.category, bookId = book.id))
+                session.add(book)
+                session.commit()
+                return redirect(url_for('bookDetail', category = book.category, bookId = book.id))
+            else:
+                return render_template("editItem.html", currentPage = 'edit', title = "Edit Book Details", book = book, errorMsg = "All Fields are Required!")
     elif book:
         book.description = book.description.replace('<br>', '\n')
         return render_template("editItem.html", currentPage = 'edit', title = "Edit Book Details", book = book)
