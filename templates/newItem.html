@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% block content%}
 <div class="mdl-grid mdl-shadow--2dp form-grid mdl-color--white margin-top-10">
-        <form action="{{url_for('newBook')}}" class="item-form" method="post">
+        <form action="{{url_for('newBook')}}" class="item-form" method="post" id="newBook">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text margin-top-5">
-            <input class="mdl-textfield__input" type="text" name="bookName">
+            <input class="mdl-textfield__input" type="text" name="bookName" id="bookname">
             <label class="mdl-textfield__label" for="bookName">Book Name</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
-            <input class="mdl-textfield__input" type="text" name="authorName">
+            <input class="mdl-textfield__input" type="text" name="authorName" id="authorname">
             <label class="mdl-textfield__label" for="authorName">Author Name</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
-            <input class="mdl-textfield__input" type="text" name="bookImage">
+            <input class="mdl-textfield__input" type="text" name="bookImage" id="coverurl">
             <label class="mdl-textfield__label" for="bookImage">Book Cover Image url</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-field-text">
-            <textarea class="mdl-textfield__input" type="text"  name="bookDescription" ></textarea>
+            <textarea class="mdl-textfield__input" type="text"  name="bookDescription" id="description"></textarea>
             <label class="mdl-textfield__label" for="bookDescription">Description</label>
           </div>
 
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth input-field-text">
 
             <input class="mdl-textfield__input" type="text" name="category" id="category" value="" readonly tabIndex="-1">
-            <label for="category" class="mdl-textfield__label">Category</label>
+            <label for="category" class="mdl-textfield__label">Genre</label>
             <ul for="category" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                 <li class="mdl-menu__item">Fiction</li>
                 <li class="mdl-menu__item">Horror</li>
@@ -34,7 +34,7 @@
             </div>
 
         <br>
-        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent input-button mdl-color--teal" type="submit" value="Create">
+        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent input-button mdl-color--teal" type="button" onclick="validateDetails()" value="Create">
         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--grey-300 input-button" href="{{url_for('showBooks')}}">Cancel</a>
 
       </form>

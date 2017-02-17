@@ -25,7 +25,7 @@
         <div class="mdl-layout__header-row">
 
             <!-- Title -->
-            {% if currentPage == 'main' %}
+            {% if currentPage == 'main' or currentPage == 'detail' %}
             <a href="{{url_for('showBooks')}}" class="mdl-color-text--white page-title"><span class="mdl-layout-title">Book-Shelf</span></a>
             {% else %}
             <span class="mdl-layout-title">{{title}}</span>
@@ -98,6 +98,10 @@
             </div>
     </div>
   </dialog>
+  <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button type="button" class="mdl-snackbar__action"></button>
+  </div>
 <script src="{{ url_for('static',filename = 'js/app.js') }}"></script>
 <script>
   var pageColor = {
