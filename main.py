@@ -32,11 +32,13 @@ def newBook():
         description = request.form['bookDescription']
         description = description.replace('\n', '<br>')
         bookCategory = request.form['category']
-        newBook = BookDB(bookName = bookName, authorName = bookAuthor, coverUrl = coverUrl, description = description, category = bookCategory)
-
-        session.add(newBook)
-        session.commit()
-        return redirect(url_for('showBooks'))
+        if (bookName and bookAuthor and coverUrl and description and bookCategory):
+            newBook = BookDB(bookName = bookName, authorName = bookAuthor, coverUrl = coverUrl, description = description, category = bookCategory)
+            session.add(newBook)
+            session.commit()
+            return redirect(url_for('showBooks'))
+        else:
+            return render_template("newItem.html", currentPage = "new", title = "Add New Book", errorMsg ="All Fields are Required!")
     else:
         return render_template("newItem.html", currentPage = "new", title = "Add New Book")
 
