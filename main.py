@@ -51,7 +51,7 @@ def sortBooks(category):
 def bookDetail(category, bookId):
     book = session.query(BookDB).filter_by(id = bookId, category = category).first()
     if book:
-        return render_template("itemDetail.html", book = book, currentPage ='detail', title = book.bookName)
+        return render_template("itemDetail.html", book = book, currentPage ='detail')
     else:
         return render_template("main.html", currentPage = 'main', error = 'No Book Found with this Category and Book Id :(')
 
@@ -80,13 +80,23 @@ def editBookDetails(category, bookId):
 
             session.add(book)
             session.commit()
-            return redirect(url_for('showBooks'))
+            return redirect(url_for('bookDetail', category = book.category, bookId = book.id))
     elif book:
         book.description = book.description.replace('<br>', '\n')
         return render_template("editItem.html", currentPage = 'edit', title = "Edit Book Details", book = book)
     else:
         return render_template("main.html", currentPage = 'main', error = 'No Book Found with this Category and Book Id :(')
 
+# to delete books
+@app.route('/books/category/<string:category>/<int:bookId>/delete/')
+def deleteBook(category, bookId):
+    book = session.query(BookDB).filter_by(category = category, id = bookId).first()
+    if book:
+        session.delete(book)
+        session.commit()
+        return redirect(url_for('showBooks'))
+    else:
+        return render_template("main.html", currentPage = 'main', error = 'Error Deleting Book! No Book Found with this Category and Book Id :(')
 
 if __name__ == '__main__':
     app.debug = True

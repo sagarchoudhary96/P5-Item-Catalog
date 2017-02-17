@@ -13,7 +13,7 @@
             </div>
             <div class="action-button">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white mdl-color-text--purple-A700 button-edit" onclick="location.href='{{url_for('editBookDetails', category = book.category, bookId = book.id)}}'">Edit Book Details</button>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--purple-A700 mdl-color-text--white button-delete">Delete Book</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--purple-A700 mdl-color-text--white button-delete" onclick="location.href='{{url_for('deleteBook', category = book.category, bookId = book.id)}}'">Delete Book</button>
             </div>
         </div>
 
