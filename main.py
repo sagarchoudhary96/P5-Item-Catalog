@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 app = Flask(__name__)
 
 from sqlalchemy import create_engine
@@ -84,7 +84,7 @@ def editBookDetails(category, bookId):
         book.description = book.description.replace('<br>', '\n')
         return render_template("editItem.html", currentPage = 'edit', title = "Edit Book Details", book = book)
     else:
-        return render_template("main.html", currentPage = 'main', error = 'No Book Found with this Category and Book Id :(')
+        return render_template("main.html", currentPage = 'main', error = 'Error Editing Book! No Book Found with this Category and Book Id :(')
 
 # to delete books
 @app.route('/books/category/<string:category>/<int:bookId>/delete/')
@@ -96,6 +96,23 @@ def deleteBook(category, bookId):
         return redirect(url_for('showBooks'))
     else:
         return render_template("main.html", currentPage = 'main', error = 'Error Deleting Book! No Book Found with this Category and Book Id :(')
+
+
+# JSON Endpoints
+@app.route('/books.json/')
+def booksJSON():
+    books = session.query(BookDB).all()
+    return jsonify(Books=[book.serialize for book in books])
+
+@app.route('/books/category/<string:category>.json/')
+def bookCategoryJSON(category):
+    books = session.query(BookDB).filter_by(category = category).all()
+    return jsonify(Books=[book.serialize for book in books])
+
+@app.route('/books/category/<string:category>/<int:bookId>.json/')
+def bookJSON(category, bookId):
+    book = session.query(BookDB).filter_by(category = category, id = bookId).first()
+    return jsonify(Book=book.serialize)
 
 if __name__ == '__main__':
     app.debug = True

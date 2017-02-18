@@ -29,6 +29,17 @@ class BookDB(Base):
     description = Column(String(), nullable = False)
     category = Column(String(100), nullable = False)
 
+    @property
+    def serialize(self):
+        # return book data in serializable format
+        return {
+            'id' : self.id,
+            'name': self.bookName,
+            'author': self.authorName,
+            'genre': self.category,
+            'coverUrl': self.coverUrl,
+            'description': self.description
+        }
 
 engine = create_engine('sqlite:///BookCatalog.db')
 Base.metadata.create_all(engine)
