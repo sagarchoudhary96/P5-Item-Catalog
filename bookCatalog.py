@@ -32,7 +32,7 @@ def check_user():
     return session.query(User).filter_by(email=email).one_or_none()
 
 def check_admin():
-    return session.query(User).filter_by(email='sagar.choudhary96@gmail.com').one_or_none
+    return session.query(User).filter_by(email='sagar.choudhary96@gmail.com').one_or_none()
 
 def createUser():
     name = login_session['name']
