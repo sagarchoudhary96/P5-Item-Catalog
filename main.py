@@ -15,10 +15,10 @@ import json
 from flask import make_response
 import requests
 
-CLIENT_ID = json.loads(open('client_secret.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open('/var/www/catalog/client_secret.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item-Catalog"
 
-engine = create_engine('sqlite:///BookCatalog.db')
+engine = create_engine('postgresql://catalog:zxcvbnm@localhost/catalog')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
@@ -207,7 +207,7 @@ def gConnect():
     try:
 
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secret.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/var/www/catalog/client_secret.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
