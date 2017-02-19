@@ -17,6 +17,8 @@ class User(Base):
     id = Column(Integer, primary_key = True)
     name = Column(String(250), nullable = False)
     email = Column(String(250), nullable = False)
+    image = Column(String(250))
+    provider = Column(String(25))
 
 # class for Books Database
 class BookDB(Base):
@@ -28,6 +30,8 @@ class BookDB(Base):
     coverUrl = Column(String(450), nullable = False)
     description = Column(String(), nullable = False)
     category = Column(String(100), nullable = False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
