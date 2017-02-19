@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 app = Flask(__name__)
+app.secret_key = 'itsasecret'
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -321,6 +322,5 @@ def gdisconnect():
         return response
 
 if __name__ == '__main__':
-    app.secret_key = 'itsasecret'
     app.debug = True
     app.run(host='', port = 5000)
