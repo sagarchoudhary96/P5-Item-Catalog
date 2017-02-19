@@ -11,19 +11,17 @@ $(".demo-card-wide").hover(
 );
 var hide = {
     loginbutton: function(){
-      $('#login_button').hide();
+      $('.signInButtonTitle').hide();
+      $('.signOutButtonTitle').show();
+      $('.signInButton').hide();
       $('#user_info').show();
-      $('#login_button1').hide();
       $('#logout_button1').show();
-      var dialog = document.querySelector('#dialog');
-      if(dialog.hasAttribute('open')){
-        dialog.close();
-      }
     },
     userinfo: function(){
       $('#user_info').hide();
-      $('#login_button').show();
-      $('#login_button1').show();
+      $('.signInButtonTitle').show();
+      $('.signOutButtonTitle').hide();
+      $('.signInButton').show();
       $('#logout_button1').hide();
     }
 }
@@ -175,6 +173,17 @@ var logout = function(){
 }
 
 gapi.signin.render("googleSignIn", {
+              'clientid': '557594200934-a6rm3u70iu50gabab2odpvaj0ir7cl0u.apps.googleusercontent.com',
+              'callback': googleSignInCallback,
+              'cookiepolicy': 'single_host_origin',
+              'requestvisibleactions': 'http://schemas.google.com/AddActivity',
+              'scope': 'openid email',
+              'redirecturi': 'postmessage',
+              'accesstype': 'offline',
+              'approvalprompt': 'force'
+});
+
+gapi.signin.render("googleSignInCustom", {
               'clientid': '557594200934-a6rm3u70iu50gabab2odpvaj0ir7cl0u.apps.googleusercontent.com',
               'callback': googleSignInCallback,
               'cookiepolicy': 'single_host_origin',
