@@ -9,6 +9,31 @@ $(".demo-card-wide").hover(
 
     }
 );
+var hide = {
+    loginbutton: function(){
+      $('#login_button').hide();
+      $('#user_info').show();
+      $('#login_button1').hide();
+      $('#logout_button1').show();
+      var dialog = document.querySelector('#dialog');
+      if(dialog.hasAttribute('open')){
+        dialog.close();
+      }
+    },
+    userinfo: function(){
+      $('#user_info').hide();
+      $('#login_button').show();
+      $('#login_button1').show();
+      $('#logout_button1').hide();
+    }
+}
+
+if((logged == 'null')||(logged=='')){
+  hide.userinfo();
+}
+else{
+  hide.loginbutton();
+}
 
 var notification = document.querySelector('.mdl-js-snackbar');
 
@@ -67,3 +92,103 @@ var validateDetails = function() {
   $('#bookForm').submit();
 
 };
+
+var googleSignInCallback = function(authResult){
+    if (authResult['code']){
+        $.ajax({
+            type: 'POST',
+            url: '/gconnect?state=' + state,
+            processData: false,
+            contentType: 'application/json',
+            data: authResult['code'],
+            success: function(result){
+                if(result){
+                    var img = result['img'].replace('https','http');
+                    hide.loginbutton();
+                    $('#userImg').attr('src',img);
+                    $('#userName').html(result['name']);
+                    $('#userEmail').html(result['email']);
+                    logged = 'google';
+                }
+                else if (authResult['error']){
+                    console.log("Following Error Occured:" + authResult['error']);
+                }
+                else{
+                    console.log('Failed to make connection with server, Please check your internet connection.');
+                }
+            }
+        });
+    }
+};
+
+
+var logout = function(){
+
+   if(logged=='google'){
+
+    $.ajax({
+
+      type: 'POST',
+      url: '/logout',
+      processData: false,
+      contentType: 'application/json',
+      success: function(result){
+        if(result['state'] == 'loggedOut'){
+          console.log(window.location.href + "?error=" + "successLogout");
+          notification.MaterialSnackbar.showSnackbar(
+            {
+              message: "You have been Successfully Logged out!"
+            }
+          );
+          hide.userinfo();
+
+        }
+        else if (result['state'] == 'notConnected'){
+          notification.MaterialSnackbar.showSnackbar(
+            {
+              message: "User not Logged in!"
+            }
+          );
+        }
+        else if (result['state'] == 'errorRevoke'){
+          notification.MaterialSnackbar.showSnackbar(
+            {
+              message: "Error Revoking User Token!"
+            }
+          );
+        }
+
+      }
+
+    });
+
+   }
+   else{
+
+     notification.MaterialSnackbar.showSnackbar(
+       {
+         message: "User not Logged in!"
+       }
+     );
+   }
+
+}
+
+gapi.signin.render("googleSignIn", {
+              'clientid': '557594200934-a6rm3u70iu50gabab2odpvaj0ir7cl0u.apps.googleusercontent.com',
+              'callback': googleSignInCallback,
+              'cookiepolicy': 'single_host_origin',
+              'requestvisibleactions': 'http://schemas.google.com/AddActivity',
+              'scope': 'openid email',
+              'redirecturi': 'postmessage',
+              'accesstype': 'offline',
+              'approvalprompt': 'force'
+});
+
+$('#logout_button').click(function(){
+    logout();
+});
+
+$('#logout_button1').click(function() {
+  logout();
+});

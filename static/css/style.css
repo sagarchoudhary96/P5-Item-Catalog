@@ -278,3 +278,22 @@ p {
         margin-top: 30vh;
     }
 }
+
+.circle {
+  border-radius: 50%;
+}
+
+.padding-user-info {
+  padding: 5px 10px 5px 10px !important;
+}
+
+.userName {
+  font-size: 1.2rem !important;
+  margin-left: 1vw;
+}
+
+.userEmail {
+    word-wrap: break-word;
+    color: #757575;
+    margin-top: 10px !important;
+}
