@@ -277,6 +277,12 @@ p {
     .no-book-msg{
         margin-top: 30vh;
     }
+    .item-form{
+        margin-left: 5vw;
+    }
+    .input-field-text {
+        width: 95% !important;
+    }
 }
 
 .circle {
