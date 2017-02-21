@@ -1,39 +1,46 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import session as login_session
+
+# app configuration
 app = Flask(__name__)
 app.secret_key = 'itsasecret'
 
+# importing SqlAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, BookDB, User
 import random, string
-from flask import session as login_session
+import httplib2
+import json
+import requests
 
+# importing oauth
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 from oauth2client.client import AccessTokenCredentials
-import httplib2
-import json
-from flask import make_response
-import requests
 
+# google client secret
 CLIENT_ID = json.loads(open('client_secret.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item-Catalog"
 
-engine = create_engine('sqlite:///BookCatalog.db')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
+engine = create_engine('sqlite:///BookCatalog.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
+# validating current loggedin user
 def check_user():
     email = login_session['email']
     return session.query(User).filter_by(email=email).one_or_none()
 
+# retreive admin user details
 def check_admin():
     return session.query(User).filter_by(email='sagar.choudhary96@gmail.com').one_or_none()
 
+# Add new user into database
 def createUser():
     name = login_session['name']
     email = login_session['email']
@@ -43,6 +50,7 @@ def createUser():
     session.add(newUser)
     session.commit()
 
+
 def new_state():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for (x) in xrange(32))
     login_session['state'] = state
@@ -51,7 +59,9 @@ def new_state():
 def queryAllBooks():
     return session.query(BookDB).all()
 
-# for main page
+# App Routes
+
+# main page
 @app.route('/')
 @app.route('/books/')
 def showBooks():
@@ -59,7 +69,7 @@ def showBooks():
     state = new_state()
     return render_template('main.html', books = books, currentPage = 'main', state = state, login_session = login_session)
 
-# for adding new book
+# To add new book
 @app.route('/book/new/', methods=['GET', 'POST'])
 def newBook():
     if request.method == 'POST':
@@ -94,14 +104,14 @@ def newBook():
         books = queryAllBooks()
         return render_template('main.html', books = books, currentPage = 'main', state = state, login_session = login_session, errorMsg = "Please Login first to Add Book!")
 
-# for showing book of different category
+# To show book of different category
 @app.route('/books/category/<string:category>/')
 def sortBooks(category):
     books = session.query(BookDB).filter_by(category = category).all()
     state = new_state()
     return render_template("main.html", books = books, currentPage = 'main', error = 'Sorry! No Book in Database With This Genre :(', state = state, login_session = login_session)
 
-# to show book detail
+# To show book detail
 @app.route('/books/category/<string:category>/<int:bookId>/')
 def bookDetail(category, bookId):
     book = session.query(BookDB).filter_by(id = bookId, category = category).first()
@@ -112,7 +122,7 @@ def bookDetail(category, bookId):
         return render_template("main.html", currentPage = 'main', error = 'No Book Found with this Category and Book Id :(', state = state, login_session = login_session)
 
 
-# to edit book detail
+# To edit book detail
 @app.route('/books/category/<string:category>/<int:bookId>/edit/', methods=['GET', 'POST'])
 def editBookDetails(category, bookId):
     book = session.query(BookDB).filter_by(id = bookId, category = category).first()
@@ -126,6 +136,7 @@ def editBookDetails(category, bookId):
             bookCategory = request.form['category']
             user_id = check_user().id
             admin_id = check_admin().id
+            # check if book owner is same as logged in user or admin or not
             if book.user_id == user_id or user_id == admin_id:
                 if (bookName and bookAuthor and coverUrl and description and bookCategory):
                     book.bookName = bookName
@@ -163,12 +174,13 @@ def editBookDetails(category, bookId):
         return render_template("main.html", currentPage = 'main', error = 'Error Editing Book! No Book Found with this Category and Book Id :(', state = state, login_session = login_session)
 
 
-# to delete books
+# To delete books
 @app.route('/books/category/<string:category>/<int:bookId>/delete/')
 def deleteBook(category, bookId):
     book = session.query(BookDB).filter_by(category = category, id = bookId).first()
     state = new_state()
     if book:
+        # check if user is logged in or not
         if 'provider' in login_session and login_session['provider']!= 'null':
             user_id = check_user().id
             admin_id = check_admin().id
@@ -200,7 +212,7 @@ def bookJSON(category, bookId):
     book = session.query(BookDB).filter_by(category = category, id = bookId).first()
     return jsonify(Book=book.serialize)
 
-
+# google signin function
 @app.route('/gconnect', methods=['POST'])
 def gConnect():
     if request.args.get('state') != login_session['state']:
@@ -281,6 +293,7 @@ def gConnect():
                    img=login_session['img'])
 
 
+# logout user
 @app.route('/logout', methods=['post'])
 def logout():
 
