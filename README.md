@@ -33,6 +33,6 @@
   2. Run your application within the VM
   
   ```
-    $ python /vagrant/catalog/main.py)
+    $ python /vagrant/catalog/main.py
   ```
   3. Access and test your application by visiting [http://localhost:8000](http://localhost:8000).
