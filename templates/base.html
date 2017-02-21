@@ -44,7 +44,7 @@
                 <a class="mdl-navigation__link" href="{{url_for('sortBooks', category='Other')}}">Other</a>
               {% endif %}
                 <!-- Colored raised button -->
-                <button id="googleSignInCustom" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white login-button-color signInButton">Login</button>
+                <button id="login_button1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white login-button-color dialog-button">Login</button>
                 <button id="logout_button1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white login-button-color">Logout</button>
             </nav>
         </div>
@@ -72,7 +72,7 @@
         </nav>
         <span class="mdl-layout-title signInButtonTitle">Account</span>
         <nav class="mdl-navigation">
-          <div id="googleSignIn" class="mdl-navigation__link signInButton">Login</div>
+          <a id="login_button" class="mdl-navigation__link dialog-button1">Login</a>
         </nav>
     </div>
     <main class="mdl-layout__content">
@@ -92,6 +92,23 @@
         </div>
     </main>
 </div>
+<!--login dialog-->
+<dialog id="dialog" class="mdl-dialog dialog-color mdl-color-text--white login-dialog">
+
+    <div class="mdl-dialog__content">
+          <div class="signin-button mdl-typography--text-center">
+              <h5 class="mdl-color-text--white no-margin fa-2x">Sign-in With  </h5>
+                  <div style="display: flex;">
+                      <div id="googleSignIn" class="auto-margin">
+                          <h5 class="mdl-color-text--white no-margin fa-5x"><i class="fa fa-google-plus" aria-hidden="true"></i></h5>
+                      </div>
+                      <div id="githubSignIn" class="auto-margin">
+                          <h5 class="mdl-color-text--white no-margin fa-5x"><i class="fa fa-github" aria-hidden="true"></i></h5>
+                      </div>
+                  </div>
+            </div>
+    </div>
+  </dialog>
 
   <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
     <div class="mdl-snackbar__text"></div>
@@ -115,6 +132,38 @@
   $('.add-button-color').addClass(pageColor.{{ currentPage }}[0]);
   $('.dialog-color').addClass(pageColor.{{ currentPage }}[0]);
 
+  (function() {
+  'use strict';
+  var dialogButton = document.querySelector('.dialog-button');
+  var dialogButton1 = document.querySelector('.dialog-button1')
+  var dialog = document.querySelector('#dialog');
+  if (! dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
+  dialogButton.addEventListener('click', function() {
+     dialog.showModal();
+    dialog.addEventListener('click', function (event) {
+        var rect = dialog.getBoundingClientRect();
+        var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+          && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+        if (!isInDialog) {
+            dialog.close();
+        }
+    });
+  });
+
+  dialogButton1.addEventListener('click', function() {
+     dialog.showModal();
+    dialog.addEventListener('click', function (event) {
+        var rect = dialog.getBoundingClientRect();
+        var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+          && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+        if (!isInDialog) {
+            dialog.close();
+        }
+    });
+  });
+}());
 </script>
 <script src="{{ url_for('static',filename = 'js/app.js') }}"></script>
 {% if errorMsg %}

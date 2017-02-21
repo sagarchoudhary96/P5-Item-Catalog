@@ -13,15 +13,21 @@ var hide = {
     loginbutton: function(){
       $('.signInButtonTitle').hide();
       $('.signOutButtonTitle').show();
-      $('.signInButton').hide();
+      $('#login_button1').hide();
+      $('#login_button').hide();
       $('#user_info').show();
       $('#logout_button1').show();
+      var dialog = document.querySelector('#dialog');
+      if(dialog.hasAttribute('open')){
+        dialog.close();
+      }
     },
     userinfo: function(){
       $('#user_info').hide();
       $('.signInButtonTitle').show();
       $('.signOutButtonTitle').hide();
-      $('.signInButton').show();
+      $('#login_button').show();
+      $('#login_button1').show();
       $('#logout_button1').hide();
     }
 }
@@ -183,16 +189,6 @@ gapi.signin.render("googleSignIn", {
               'approvalprompt': 'force'
 });
 
-gapi.signin.render("googleSignInCustom", {
-              'clientid': '557594200934-a6rm3u70iu50gabab2odpvaj0ir7cl0u.apps.googleusercontent.com',
-              'callback': googleSignInCallback,
-              'cookiepolicy': 'single_host_origin',
-              'requestvisibleactions': 'http://schemas.google.com/AddActivity',
-              'scope': 'openid email',
-              'redirecturi': 'postmessage',
-              'accesstype': 'offline',
-              'approvalprompt': 'force'
-});
 
 $('#logout_button').click(function(){
     logout();
