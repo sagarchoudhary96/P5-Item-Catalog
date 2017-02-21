@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 app = Flask(__name__)
+app.secret_key = 'itsasecret'
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -30,6 +31,8 @@ def check_user():
     email = login_session['email']
     return session.query(User).filter_by(email=email).one_or_none()
 
+def check_admin():
+    return session.query(User).filter_by(email='sagar.choudhary96@gmail.com').one_or_none()
 
 def createUser():
     name = login_session['name']
@@ -122,7 +125,8 @@ def editBookDetails(category, bookId):
             description = request.form['bookDescription']
             bookCategory = request.form['category']
             user_id = check_user().id
-            if book.user_id == user_id:
+            admin_id = check_admin().id
+            if book.user_id == user_id or user_id == admin_id:
                 if (bookName and bookAuthor and coverUrl and description and bookCategory):
                     book.bookName = bookName
                     book.authorName = bookAuthor
@@ -146,7 +150,8 @@ def editBookDetails(category, bookId):
         state = new_state()
         if 'provider' in login_session and login_session['provider']!= 'null':
             user_id = check_user().id
-            if user_id == book.user_id:
+            admin_id = check_admin().id
+            if user_id == book.user_id or user_id == admin_id:
                 book.description = book.description.replace('<br>', '\n')
                 return render_template("editItem.html", currentPage = 'edit', title = "Edit Book Details", book = book, state = state, login_session = login_session)
             else:
@@ -166,7 +171,8 @@ def deleteBook(category, bookId):
     if book:
         if 'provider' in login_session and login_session['provider']!= 'null':
             user_id = check_user().id
-            if user_id == book.user_id:
+            admin_id = check_admin().id
+            if user_id == book.user_id or user_id == admin_id:
                 session.delete(book)
                 session.commit()
                 return redirect(url_for('showBooks'))
@@ -321,6 +327,5 @@ def gdisconnect():
         return response
 
 if __name__ == '__main__':
-    app.secret_key = 'itsasecret'
     app.debug = True
     app.run(host='', port = 5000)
