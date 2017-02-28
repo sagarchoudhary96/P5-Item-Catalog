@@ -1,6 +1,6 @@
 # Item Catalog
 
-The Live version of project can be found [Here](http://ec2-52-33-104-60.us-west-2.compute.amazonaws.com).
+The Live version of project can be found [Here](http://ec2-52-33-104-60.us-west-2.compute.amazonaws.com). (currently not working)
 ### Project Overview
 > To Develop an application that provides a list of items within a variety of categories as well as provide a user registration and authentication system. Registered users will have the ability to post, edit and delete their own items.
 
