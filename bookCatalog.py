@@ -25,14 +25,14 @@ engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind = engine)
-session = DBSession()
+DBconnection = DBSession()
 
 def check_user():
     email = login_session['email']
-    return session.query(User).filter_by(email=email).one_or_none()
+    return DBconnection.query(User).filter_by(email=email).one_or_none()
 
 def check_admin():
-    return session.query(User).filter_by(email='sagar.choudhary96@gmail.com').one_or_none()
+    return DBconnection.query(User).filter_by(email='sagar.choudhary96@gmail.com').one_or_none()
 
 def createUser():
     name = login_session['name']
@@ -40,8 +40,8 @@ def createUser():
     url = login_session['img']
     provider = login_session['provider']
     newUser = User(name = name, email = email, image = url, provider = provider)
-    session.add(newUser)
-    session.commit()
+    DBconnection.add(newUser)
+    DBconnection.commit()
 
 def new_state():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for (x) in xrange(32))
@@ -49,7 +49,7 @@ def new_state():
     return state
 
 def queryAllBooks():
-    return session.query(BookDB).all()
+    return DBconnection.query(BookDB).all()
 
 # for main page
 @app.route('/')
@@ -76,8 +76,8 @@ def newBook():
 
             if (bookName and bookAuthor and coverUrl and description and bookCategory):
                 newBook = BookDB(bookName = bookName, authorName = bookAuthor, coverUrl = coverUrl, description = description, category = bookCategory, user_id = user_id)
-                session.add(newBook)
-                session.commit()
+                DBconnection.add(newBook)
+                DBconnection.commit()
                 return redirect(url_for('showBooks'))
             else:
                 state = new_state()
@@ -97,14 +97,14 @@ def newBook():
 # for showing book of different category
 @app.route('/books/category/<string:category>/')
 def sortBooks(category):
-    books = session.query(BookDB).filter_by(category = category).all()
+    books = DBconnection.query(BookDB).filter_by(category = category).all()
     state = new_state()
     return render_template("main.html", books = books, currentPage = 'main', error = 'Sorry! No Book in Database With This Genre :(', state = state, login_session = login_session)
 
 # to show book detail
 @app.route('/books/category/<string:category>/<int:bookId>/')
 def bookDetail(category, bookId):
-    book = session.query(BookDB).filter_by(id = bookId, category = category).first()
+    book = DBconnection.query(BookDB).filter_by(id = bookId, category = category).first()
     state = new_state()
     if book:
         return render_template("itemDetail.html", book = book, currentPage ='detail', state = state, login_session = login_session)
@@ -115,7 +115,7 @@ def bookDetail(category, bookId):
 # to edit book detail
 @app.route('/books/category/<string:category>/<int:bookId>/edit/', methods=['GET', 'POST'])
 def editBookDetails(category, bookId):
-    book = session.query(BookDB).filter_by(id = bookId, category = category).first()
+    book = DBconnection.query(BookDB).filter_by(id = bookId, category = category).first()
     if request.method == 'POST':
         # check if user is logged in or not
         if 'provider' in login_session and login_session['provider']!= 'null':
@@ -134,8 +134,8 @@ def editBookDetails(category, bookId):
                     description = description.replace('\n', '<br>')
                     book.description = description
                     book.category = bookCategory
-                    session.add(book)
-                    session.commit()
+                    DBconnection.add(book)
+                    DBconnection.commit()
                     return redirect(url_for('bookDetail', category = book.category, bookId = book.id))
                 else:
                     state = new_state()
@@ -166,15 +166,15 @@ def editBookDetails(category, bookId):
 # to delete books
 @app.route('/books/category/<string:category>/<int:bookId>/delete/')
 def deleteBook(category, bookId):
-    book = session.query(BookDB).filter_by(category = category, id = bookId).first()
+    book = DBconnection.query(BookDB).filter_by(category = category, id = bookId).first()
     state = new_state()
     if book:
         if 'provider' in login_session and login_session['provider']!= 'null':
             user_id = check_user().id
             admin_id = check_admin().id
             if user_id == book.user_id or user_id == admin_id:
-                session.delete(book)
-                session.commit()
+                DBconnection.delete(book)
+                DBconnection.commit()
                 return redirect(url_for('showBooks'))
             else:
                 return render_template("itemDetail.html", book = book, currentPage ='detail', state = state, login_session = login_session, errorMsg = "Sorry! Only the Owner Can delete the book")
@@ -187,17 +187,17 @@ def deleteBook(category, bookId):
 # JSON Endpoints
 @app.route('/books.json/')
 def booksJSON():
-    books = session.query(BookDB).all()
+    books = DBconnection.query(BookDB).all()
     return jsonify(Books=[book.serialize for book in books])
 
 @app.route('/books/category/<string:category>.json/')
 def bookCategoryJSON(category):
-    books = session.query(BookDB).filter_by(category = category).all()
+    books = DBconnection.query(BookDB).filter_by(category = category).all()
     return jsonify(Books=[book.serialize for book in books])
 
 @app.route('/books/category/<string:category>/<int:bookId>.json/')
 def bookJSON(category, bookId):
-    book = session.query(BookDB).filter_by(category = category, id = bookId).first()
+    book = DBconnection.query(BookDB).filter_by(category = category, id = bookId).first()
     return jsonify(Book=book.serialize)
 
 

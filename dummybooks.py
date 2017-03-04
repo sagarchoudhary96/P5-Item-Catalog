@@ -16,43 +16,43 @@ DBSession = sessionmaker(bind=engine)
 # session.commit(). If you're not happy about the changes, you can
 # revert all of them back to the last commit by calling
 # session.rollback()
-session = DBSession()
+DBconnection = DBSession()
 
 # Create dummy user
 User1 = User(name="admin", email="sagar.choudhary96@gmail.com")
-session.add(User1)
-session.commit()
+DBconnection.add(User1)
+DBconnection.commit()
 
 # Dummy books data
 book1 = BookDB(bookName = "The Year of Taking Chances", authorName = "Lucy Diamond", coverUrl = "https://books.google.com/books/content/images/frontcover/F9uIBAAAQBAJ?fife=w300-rw",
                 description = "hello", category = "Romance", user_id = 1)
 
-session.add(book1)
-session.commit()
+DBconnection.add(book1)
+DBconnection.commit()
 
 book2 = BookDB(bookName = "Summoner: The Inquisition: Book 2", authorName = "Taran Matharu", coverUrl = "https://books.google.com/books/content/images/frontcover/sQAfCgAAQBAJ?fife=w300-rw",
                 description = "hello", category = "Fantasy", user_id = 1)
 
-session.add(book2)
-session.commit()
+DBconnection.add(book2)
+DBconnection.commit()
 
 book3 = BookDB(bookName = "That's The Way We Met", authorName = "Sudeep Nagarkar", coverUrl = "https://books.google.com/books/content/images/frontcover/xE15t_pAG34C?fife=w300-rw",
                 description = "hello", category = "Fiction", user_id = 1)
 
-session.add(book3)
-session.commit()
+DBconnection.add(book3)
+DBconnection.commit()
 
 book4 = BookDB(bookName = "The Creep", authorName = "John Arcudi", coverUrl = "https://books.google.com/books/content/images/frontcover/fEI4qWTBoZMC?fife=w300-rw",
                 description = "hello", category = "Mystery", user_id = 1)
 
-session.add(book4)
-session.commit()
+DBconnection.add(book4)
+DBconnection.commit()
 
 book5 = BookDB(bookName = "Now That You're Rich: Let's fall in Love!", authorName = "Durjoy Datta", coverUrl = "https://books.google.com/books/content/images/frontcover/CDQnAgAAQBAJ?fife=w300-rw",
                 description = "hello", category = "Romance", user_id = 1)
 
-session.add(book5)
-session.commit()
+DBconnection.add(book5)
+DBconnection.commit()
 
 
 print "added Books!"
