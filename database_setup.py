@@ -45,5 +45,5 @@ class BookDB(Base):
             'description': self.description
         }
 
-engine = create_engine('postgresql://bookDB:password@localhost/catalog')
+engine = create_engine('postgresql://bookdb:hello@localhost/catalog')
 Base.metadata.create_all(engine)
