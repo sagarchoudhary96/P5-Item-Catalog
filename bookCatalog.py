@@ -19,7 +19,7 @@ import requests
 CLIENT_ID = json.loads(open('/var/www/catalog/client_secret.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item-Catalog"
 
-engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
+engine = create_engine('postgresql://bookDB:password@localhost/catalog')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
