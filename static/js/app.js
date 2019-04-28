@@ -177,7 +177,7 @@ gapi.signin.render("googleSignIn", {
               'callback': googleSignInCallback,
               'cookiepolicy': 'single_host_origin',
               'requestvisibleactions': 'http://schemas.google.com/AddActivity',
-              'scope': 'openid email',
+              'scope': 'openid email profile',
               'redirecturi': 'postmessage',
               'accesstype': 'offline',
               'approvalprompt': 'force'
@@ -188,7 +188,7 @@ gapi.signin.render("googleSignInCustom", {
               'callback': googleSignInCallback,
               'cookiepolicy': 'single_host_origin',
               'requestvisibleactions': 'http://schemas.google.com/AddActivity',
-              'scope': 'openid email',
+              'scope': 'openid email profile',
               'redirecturi': 'postmessage',
               'accesstype': 'offline',
               'approvalprompt': 'force'
